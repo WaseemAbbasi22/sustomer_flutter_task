@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:sustomer_flutter_task/models/Questions.dart';
 import 'package:sustomer_flutter_task/models/question_model.dart';
-import 'package:sustomer_flutter_task/screens/score/score_screen.dart';
+import 'package:sustomer_flutter_task/views/score/score_screen.dart';
 import 'package:sustomer_flutter_task/services/firestore_services.dart';
 
 // We use get package for our state management
 
 class QuestionController extends GetxController
-    with SingleGetTickerProviderMixin {
+    with GetSingleTickerProviderStateMixin {
   // Lets animated our progress bar
 
   AnimationController? _animationController;
@@ -23,18 +23,6 @@ class QuestionController extends GetxController
 
   PageController get pageController => this._pageController!;
   RxBool loading = false.obs;
-
-  List<Question> _questions = sample_data
-      .map(
-        (question) => Question(
-            id: question['id'],
-            question: question['question'],
-            options: question['options'],
-            answer: question['answer_index']),
-      )
-      .toList();
-
-  List<Question> get questions => this._questions;
 
   bool _isAnswered = false;
 
@@ -73,7 +61,7 @@ class QuestionController extends GetxController
     _firestoreService = FirestoreService();
     getAllQ();
     _animationController =
-        AnimationController(duration: Duration(seconds: 60), vsync: this);
+        AnimationController(duration: Duration(seconds: 30), vsync: this);
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController!)
       ..addListener(() {
         // update like setState
@@ -97,20 +85,21 @@ class QuestionController extends GetxController
   }
 
   // Stream<List<Client>> get clientstream => firestoreService.getclientstream();
-  List<QuestionModel>? questionList;
-  List<QuestionM>? allQuestions;
+  // List<QuestionModel>? questionList;
+  List<Question>? allQuestions;
 
-  Future<List<QuestionM>> get allQ => _firestoreService!.getQuestions();
+  Future<List<Question>> get allQ => _firestoreService!.getQuestions();
 
-  Future<void> getAllQuestions() async {
-    questionList = await _firestoreService!.retrieveQuestions();
-  }
+  // Future<void> getAllQuestions() async {
+  //   questionList = await _firestoreService!.retrieveQuestions();
+  // }
 
   Future<void> getAllQ() async {
+    // allQuestions!.clear();
     allQuestions = await _firestoreService!.getQuestions();
   }
 
-  void checkAns(QuestionM question, int selectedIndex) {
+  void checkAns(Question question, int selectedIndex) {
     // because once user press any option then it will run
     _isAnswered = true;
     _correctAns = question.correctAnswerIndex!;

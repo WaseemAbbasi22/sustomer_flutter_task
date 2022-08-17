@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:sustomer_flutter_task/screens/welcome/welcome_screen.dart';
+import 'package:sustomer_flutter_task/views/welcome/welcome_screen.dart';
 
 import 'configurations/size_config.dart';
 

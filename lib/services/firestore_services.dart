@@ -9,18 +9,18 @@ class FirestoreService {
 
   //Get Entries
 
-  Future<List<QuestionModel>> retrieveQuestions() async {
-    QuerySnapshot<Map<String, dynamic>> snapshot =
-    await _db.collection("questions").get();
-    return snapshot.docs
-        .map((docSnapshot) => QuestionModel.fromJson(docSnapshot))
-        .toList();
-  }
-  Future<List<QuestionM>> getQuestions() async {
+  // Future<List<Questionodel>> retrieveQuestions() async {
+  //   QuerySnapshot<Map<String, dynamic>> snapshot =
+  //   await _db.collection("questions").get();
+  //   return snapshot.docs
+  //       .map((docSnapshot) => Questionodel.fromJson(docSnapshot))
+  //       .toList();
+  // }
+  Future<List<Question>> getQuestions() async {
     QuerySnapshot<Map<String, dynamic>> snapshot =
     await _db.collection("questions").orderBy('id').get();
     return snapshot.docs
-        .map((docSnapshot) => QuestionM.fromJson(docSnapshot))
+        .map((docSnapshot) => Question.fromJson(docSnapshot))
         .toList();
   }
   // Future<List<Question>> getJobs() {

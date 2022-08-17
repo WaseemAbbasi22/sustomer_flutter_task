@@ -3,7 +3,7 @@ import 'package:sustomer_flutter_task/configurations/size_config.dart';
 import 'package:sustomer_flutter_task/constants/app_colors.dart';
 import 'package:sustomer_flutter_task/controllers/question_controller.dart';
 import 'package:sustomer_flutter_task/models/question_model.dart';
-import 'package:sustomer_flutter_task/screens/quiz/components/rounded_button.dart';
+import 'package:sustomer_flutter_task/views/quiz/components/rounded_button.dart';
 import 'package:sustomer_flutter_task/utilities/general_utils.dart';
 
 import '../../../constants/constants.dart';
@@ -31,11 +31,11 @@ class QuestionCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(25),
       ),
-      child: FutureBuilder<List<QuestionM>>(
+      child: FutureBuilder<List<Question>>(
         future: questionController.allQ,
         builder: (
           BuildContext context,
-          AsyncSnapshot<List<QuestionM>> snapshot,
+          AsyncSnapshot<List<Question>> snapshot,
         ) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: GeneralUtils.loaderWidget());

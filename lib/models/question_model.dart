@@ -1,40 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-class QuestionModel {
-   String ?question;
-   List<String> ?answers;
-   int ?correctAnswerIndex;
-
-  QuestionModel({required this.question,required this.answers,required this.correctAnswerIndex});
-  QuestionModel.fromJson( DocumentSnapshot<Map<String, dynamic>> json){
-    question = json['question'];
-    if(json['answers']!=null){
-      //List.from(value.data['point'])
-      // answers = json['answer'].map<String>((e)=>e).toList();
-      answers = List.from(json['answers']);
-    }
-    correctAnswerIndex = json['correctAnswerIndex'];
-  }
-
-
-  Map<String, dynamic> toJson() {
-    return {
-      'question': question,
-      'answer': answers,
-      'correctAnswerIndex': correctAnswerIndex,
-    };
-  }
-}
-
-
-class QuestionM {
+class Question {
   String? questionText;
   int ?correctAnswerIndex;
   List<Answers>? answers;
 
-  QuestionM({this.questionText, this.answers,this.correctAnswerIndex});
+  Question({this.questionText, this.answers,this.correctAnswerIndex});
 
-  QuestionM.fromJson(DocumentSnapshot<Map<String, dynamic>> json) {
+  Question.fromJson(DocumentSnapshot<Map<String, dynamic>> json) {
     questionText = json['question'];
     correctAnswerIndex=json['correctAnswer'];
     if (json['answers'] != null) {
